@@ -17,9 +17,9 @@ datasets:
   train:
     name: custom
     type: RealESRGANPairedDataset
-    dataroot_gt: data/forest, mountains, -women, -people, -wedding, -man, -animal
-    dataroot_lq: data/forest, mountains, -women, -people, -wedding, -man, -animal
-    meta_info: data/forest, mountains, -women, -people, -wedding, -man, -animal/metadata.txt
+    dataroot_gt: ../data/forest, mountains, -women, -people, -wedding, -man, -animal
+    dataroot_lq: ../data/forest, mountains, -women, -people, -wedding, -man, -animal
+    meta_info: ../data/forest, mountains, -women, -people, -wedding, -man, -animal/metadata.txt
     io_backend:
       type: disk
 
