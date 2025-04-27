@@ -37,6 +37,7 @@ def main(args):
     opt['crop_size'] = args.crop_size
     opt['step'] = args.step
     opt['thresh_size'] = args.thresh_size
+    opt['downscale'] = args.downscale
     extract_subimages(opt)
 
 
@@ -110,6 +111,11 @@ def worker(path, opt):
             index += 1
             cropped_img = img[x:x + crop_size, y:y + crop_size, ...]
             cropped_img = np.ascontiguousarray(cropped_img)
+
+            if opt['downscale'] != 1.0:
+                cropped_img = cv2.resize(cropped_img, None, fx=1 / opt['downscale'], fy=1 / opt['downscale'],
+                                         interpolation=cv2.INTER_CUBIC)
+
             cv2.imwrite(
                 osp.join(opt['save_folder'], f'{img_name}_s{index:03d}{extension}'), cropped_img,
                 [cv2.IMWRITE_PNG_COMPRESSION, opt['compression_level']])
@@ -130,6 +136,7 @@ if __name__ == '__main__':
         help='Threshold size. Patches whose size is lower than thresh_size will be dropped.')
     parser.add_argument('--n_thread', type=int, default=20, help='Thread number.')
     parser.add_argument('--compression_level', type=int, default=3, help='Compression level')
+    parser.add_argument('--downscale', type=float, default=1.0, help='Downscale factor')
     args = parser.parse_args()
 
     main(args)
