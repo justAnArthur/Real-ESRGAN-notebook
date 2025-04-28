@@ -49,9 +49,12 @@ network_d:
 
 # path
 path:
-  pretrain_network_g: ~
+  pretrain_network_g: /content/real-esrgan/tests/data/ned_g_latest.pth
   param_key_g: params_ema
   strict_load_g: true
+  pretrain_network_d: /content/real-esrgan/tests/data/ned_d_latest.pth
+  param_key_d: params
+  strict_load_d: true
   resume_state: ~
 
 # training settings
