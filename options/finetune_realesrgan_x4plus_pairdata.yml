@@ -1,4 +1,4 @@
-name: finetune_RealESRGANx4plus_15k_pairdata
+name: finetune_RealESRGANx4plus_5k_pairdata
 model_type: RealESRGANModel
 scale: 4
 num_gpu: auto
@@ -17,8 +17,8 @@ datasets:
   train:
     name: custom
     type: RealESRGANPairedDataset
-    dataroot_gt: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom/"
-    dataroot_lq: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom/"
+    dataroot_gt: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom"
+    dataroot_lq: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom"
     meta_info: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom/metadata_train.txt"
     io_backend:
       type: disk
@@ -37,8 +37,8 @@ datasets:
   val:
     name: validation
     type: PairedImageDataset
-    dataroot_gt: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom/"
-    dataroot_lq: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom/"
+    dataroot_gt: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom"
+    dataroot_lq: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom"
     meta_info: "/content/drive/MyDrive/Colab Notebooks/Datasets/custom/metadata_val.txt"
     io_backend:
       type: disk
@@ -76,16 +76,16 @@ train:
     type: Adam
     lr: !!float 1e-5
     weight_decay: 0
-    betas: [0.9, 0.99]
+    betas: [ 0.9, 0.99 ]
   optim_d:
     type: Adam
     lr: !!float 1e-5
     weight_decay: 0
-    betas: [0.9, 0.99]
+    betas: [ 0.9, 0.99 ]
 
   scheduler:
     type: MultiStepLR
-    milestones: [5000]
+    milestones: [ 5000 ]
     gamma: 0.5
 
   total_iter: 5000
@@ -141,19 +141,19 @@ train:
   net_d_iters: 1
   net_d_init_iters: 0
 
-val:
-  val_freq: 100
-  save_img: True
-
-  metrics:
-    psnr:
-      type: calculate_psnr
-      crop_border: 4
-      test_y_channel: false
-    ssim:
-      type: calculate_ssim
-      crop_border: 4
-      test_y_channel: false
+#val:
+#  val_freq: 200
+#  save_img: True
+#
+#  metrics:
+#    psnr:
+#      type: calculate_psnr
+#      crop_border: 4
+#      test_y_channel: false
+#    ssim:
+#      type: calculate_ssim
+#      crop_border: 4
+#      test_y_channel: false
 
 logger:
   print_freq: 100
